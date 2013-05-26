@@ -1,3 +1,8 @@
+" Include user's local 'before' vim config
+if filereadable(expand("~/.vimrc.before"))
+  source ~/.vimrc.before
+endif
+
 " ==============================================================================
 " Pathogen
 " ==============================================================================
@@ -44,12 +49,12 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-set nolist
-set listchars=eol:$,tab:>-,trail:.,extends:>,precedes:<
-autocmd filetype html,xml set listchars-=tab:>.
+set list
+set listchars=tab:>·,trail:·,extends:>,precedes:< ",eol:$
+"autocmd filetype html,xml set listchars-=tab:>.
 set pastetoggle=<F2>
-nmap <F3> :execute 'set list!'<CR>
 nmap <silent> <leader>ww :%s/\s\+$//e<CR> :echo "Whitespace removed"<CR>
+nmap <silent> <leader>wt :set list!<CR>
 
 " Searching
 set hlsearch
@@ -93,21 +98,19 @@ set scrolloff=5
 " cope (Error list)
 nnoremap <Leader>E :cope <CR>
 
-" CTags
-map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
-"Toggle Tags List
-nmap <C-C> :execute 'TlistToggle' <CR>
-let Tlist_Use_Right_Window = 1
-let Tlist_Sort_Type = "name"
-let Tlist_WinWidth = 40
-
 " Bubble lines
 inoremap <C-Up> <Esc>:m-2<CR>==gi
 inoremap <C-Down> <Esc>:m+<CR>==gi
-nnoremap <C-Up> :m-2<CR>==
-nnoremap <C-Down> :m+<CR>==
+"nnoremap <C-Up> :m-2<CR>==
+"nnoremap <C-Down> :m+<CR>==
 vnoremap <C-Up> :m-2<CR>gv=gv
 vnoremap <C-Down> :m'>+<CR>gv=gv
+
+" Move around windows
+map <C-Up> <C-w>k
+map <C-Down> <C-w>j
+map <C-Left> <C-w>h
+map <C-Right> <C-w>l
 
 " Use modeline overrides
 set modeline
@@ -138,7 +141,6 @@ imap <D-[> <C-O><<
 " NERDTree configuration
 " ==============================================================================
 :nmap <C-N> :execute 'NERDTreeToggle ' .getcwd() <CR>
-":nmap <C-N> :execute 'NERDTreeTabsToggle ' <CR>
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.orig', '\.swp\*', '__pycache__']
 let NERDTreeHighlightCursorline=1
 let NERDTreeWinSize=50
@@ -164,7 +166,7 @@ autocmd FileType sh map <buffer> <Leader>R :w<CR>:!/usr/bin/env sh % <CR>
 autocmd FileType javascript map <buffer> <Leader>rr :w<CR>:new<CR>:r!/usr/bin/env node # <CR>
 autocmd FileType javascript map <buffer> <Leader>R :w<CR>:!/usr/bin/env node % <CR>
 
-
+"
 " ==============================================================================
 " Load platform specific settings
 " ==============================================================================
@@ -180,8 +182,58 @@ endif
 
 
 " ==============================================================================
+" Python-Mode
+" ==============================================================================
+
+let g:pymode_options = 0
+let g:pymode_syntax = 0
+let g:pymode_rope_guess_project = 1
+let g:pymode_utils_whitespaces = 0
+
+let g:pymode_rope = 1
+let g:pymode_folding = 0
+let g:pymode_rope_auto_project = 1
+let g:pymode_rope_enable_autoimport = 1
+let g:pymode_rope_autoimport_generate = 1
+let g:pymode_rope_autoimport_modules = ["os","shutil","datetime"]
+let g:pymode_rope_vim_completion = 1
+let g:pymode_rope_goto_def_newwin = "tabnew"
+
+let g:pymode_lint = 0
+
+map <C-g> :RopeGotoDefinition<CR>
+
+" ==============================================================================
 " SingleCompile
 " ==============================================================================
+nmap <F8> :SCViewResult<cr>
 nmap <F9> :SCCompile<cr>
 nmap <F10> :SCCompileRun<cr>
+
+" ==============================================================================
+" Powerline
+" ==============================================================================
+let g:Powerline_symbols = 'fancy'
+
+" ==============================================================================
+" CtrlP
+" ==============================================================================
+let g:ctrlp_custom_ignore = '\v(build|dist)[\/]'
+
+" ==============================================================================
+" Tagbar [ctags]
+" ==============================================================================
+" support for extra file types: https://github.com/majutsushi/tagbar/wiki
+nmap <leader>t :TagbarToggle<CR>
+
+" ==============================================================================
+" Gundo
+" ==============================================================================
+nnoremap <C-h> :GundoToggle<CR>
+
+
+" Include user's local vim config
+if filereadable(expand("~/.vimrc.after"))
+  source ~/.vimrc.after
+endif
 

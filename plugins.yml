@@ -1,11 +1,45 @@
 ---
 plugins:
+  abolish: git://github.com/tpope/vim-abolish.git
   ctrlp: git://github.com/kien/ctrlp.vim.git
+  fugitive: git://github.com/tpope/vim-fugitive.git
+  gundo: git://github.com/sjl/gundo.vim.git
+  indent-object: git://github.com/michaeljsmith/vim-indent-object.git
+  matchit: https://github.com/edsono/vim-matchit.git
+  multiple-cursors: git://github.com/terryma/vim-multiple-cursors.git
+  nerdcommenter: git://github.com/scrooloose/nerdcommenter.git
   nerdtree: git://github.com/lukaszb/nerdtree.git
+  nrrwrgn: git://github.com/chrisbra/NrrwRgn.git
+  pyflakes: git://github.com/vim-scripts/pyflakes.vim.git
+  python-mode: git://github.com/klen/python-mode.git
+  repeat: git://github.com/tpope/vim-repeat.git
+  singlecompile: git://github.com/xuhdev/SingleCompile.git
+  superpy: git://github.com/lukaszb/superpy.git
+  supertab: git://github.com/ervandew/supertab.git
+  surround: https://github.com/tpope/vim-surround.git
+  tagbar: git://github.com/majutsushi/tagbar.git
+  unimpaired: git://github.com/tpope/vim-unimpaired.git
+  zoomwin: git://github.com/itspriddle/ZoomWin.git
+
+  # Look & Feel
+  powerline: https://github.com/Lokaltog/vim-powerline.git
   rainbow-parens: git://github.com/vim-scripts/Rainbow-Parentheses-Improved-and2.git
 
   # colors
+  getafe: https://github.com/larssmit/vim-getafe.git
+  github: https://github.com/telamon/vim-color-github.git
   ir_black: git://github.com/lukaszb/vim-irblack.git
+  janus: git://github.com/TechnoGate/janus-colors.git
+  molokai: https://github.com/vim-scripts/molokai.git
+  pyte: https://github.com/vim-scripts/pyte.git
+  sampler-pack: https://github.com/vim-scripts/Colour-Sampler-Pack.git
   solarized: git://github.com/altercation/vim-colors-solarized.git
+  vividchalk: https://github.com/tpope/vim-vividchalk.git
 
+  # syntax
+  riv: git://github.com/Rykka/riv.vim.git # restructuredText
 
+  # snippets
+  ulti-snips: git://github.com/SirVer/ultisnips.git
+
+# vim: tabstop=2 shiftwidth=2 softtabstop=2
