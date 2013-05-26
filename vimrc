@@ -231,6 +231,12 @@ nmap <leader>t :TagbarToggle<CR>
 " ==============================================================================
 nnoremap <C-h> :GundoToggle<CR>
 
+" ==============================================================================
+" Multiple-Cursors
+" ==============================================================================
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_next_key='<C-m>'
+
 
 " Include user's local vim config
 if filereadable(expand("~/.vimrc.after"))
