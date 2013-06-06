@@ -1,6 +1,7 @@
 ---
 plugins:
   abolish: git://github.com/tpope/vim-abolish.git
+  closetag: git://github.com/docunext/closetag.vim.git
   ctrlp: git://github.com/kien/ctrlp.vim.git
   fugitive: git://github.com/tpope/vim-fugitive.git
   gundo: git://github.com/sjl/gundo.vim.git
@@ -37,6 +38,7 @@ plugins:
   vividchalk: https://github.com/tpope/vim-vividchalk.git
 
   # syntax
+  django: git://github.com/vim-scripts/django.vim.git
   riv: git://github.com/Rykka/riv.vim.git # restructuredText
 
   # snippets

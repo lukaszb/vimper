@@ -64,7 +64,7 @@ set smartcase
 
 " Tab completion
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,*.rbc,.git,.hg,.svn,.bzr,*.pyc
+set wildignore+=*.o,*.obj,*.rbc,.git,.hg,.svn,.bzr,*.pyc,*.egg,*.egg-info
 
 "Directories for swp files
 set backupdir=~/.vim/backup
@@ -150,6 +150,8 @@ let NERDTreeWinSize=50
 " Filetypes
 " ==============================================================================
 autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType html set filetype=htmldjango
+autocmd BufEnter *.html set ft=htmldjango
 
 
 " ==============================================================================
@@ -219,6 +221,7 @@ let g:Powerline_symbols = 'fancy'
 " CtrlP
 " ==============================================================================
 let g:ctrlp_custom_ignore = '\v(build|dist)[\/]'
+let g:ctrlp_working_path_mode = '' " default is 'ra'
 
 " ==============================================================================
 " Tagbar [ctags]
@@ -236,6 +239,7 @@ nnoremap <C-h> :GundoToggle<CR>
 " ==============================================================================
 let g:multi_cursor_use_default_mapping=0
 let g:multi_cursor_next_key='<C-m>'
+let g:multi_cursor_quit_key='<C-c>'
 
 
 " Include user's local vim config
