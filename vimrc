@@ -153,6 +153,10 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType html set filetype=htmldjango
 autocmd BufEnter *.html set ft=htmldjango
 
+" closetag
+autocmd Filetype html,xml,xsl source ~/.vim/bundle/closetag/plugin/closetag.vim
+imap <C-_> <C-r>=GetCloseTag()<CR>
+
 
 " ==============================================================================
 " Simple scripts running
