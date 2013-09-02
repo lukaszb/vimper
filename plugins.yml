@@ -41,6 +41,7 @@ plugins:
   coffee: git://github.com/kchmck/vim-coffee-script.git
   django: git://github.com/vim-scripts/django.vim.git
   riv: git://github.com/Rykka/riv.vim.git # restructuredText
+  salt: git@github.com:saltstack/salt-vim.git
   scala: git@github.com:derekwyatt/vim-scala.git
 
   # snippets
