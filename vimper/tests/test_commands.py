@@ -4,6 +4,7 @@ from mock import call
 from mock import patch
 from vimper.config import Config
 from vimper.commands import get_plugins
+from vimper.commands import get_existing_plugins
 from vimper.commands import UpdateCommand
 from vimper.utils import abspath
 import os
@@ -28,6 +29,14 @@ class TestUtilities(unittest.TestCase):
             'ctrlp': 'git://github.com/kien/ctrlp.vim.git',
             'nerdtree': 'git://github.com/lukaszb/nerdtree.git',
         })
+
+    @patch.object(os, 'listdir')
+    def test_get_existing_plugins(self, listdir):
+        plugins = ['ctrp', 'nerdtree', 'solarized']
+        listdir.return_value = plugins
+        self.config.bundle_path = '~/.vim/bundle'
+        self.assertEqual(get_existing_plugins(self.config), plugins)
+        listdir.assert_called_once_with('~/.vim/bundle')
 
 
 class TestUpdateCommand(unittest.TestCase):
@@ -92,11 +101,27 @@ class TestUpdateCommand(unittest.TestCase):
         self.command.update_plugin.assert_called_once_with('foo', 'bar')
         self.assertEqual(value, 123)
 
-    @patch('vimper.commands.update_repo')
     @patch('vimper.commands.get_plugins')
-    def test_update_plugins(self, get_plugins, update_repo):
-        plugins = {'adamantium': 'foo', 'eternium': 'bar'}
-        get_plugins.return_value = plugins
+    def test_get_plugins_to_update(self, get_plugins):
+        self.command.namespace = Namespace(only_new=False)
+        get_plugins.return_value = {'solarized': 1, 'ctrlp': 2, 'nerdtree': 3}
+        self.assertEqual(self.command.get_plugins_to_update(), [
+            ('ctrlp', 2), ('nerdtree', 3), ('solarized', 1)])
+
+    @patch('vimper.commands.get_plugins')
+    @patch('vimper.commands.get_existing_plugins')
+    def test_get_plugins_to_update_respects_only_new_flag(self,
+        get_existing_plugins, get_plugins):
+
+        get_plugins.return_value = {'solarized': 1, 'ctrlp': 2, 'nerdtree': 3}
+        get_existing_plugins.return_value = ['nerdtree', 'solarized']
+        self.command.namespace = Namespace(only_new=True)
+        self.assertEqual(self.command.get_plugins_to_update(), [('ctrlp', 2)])
+
+    @patch('vimper.commands.update_repo')
+    def test_update_plugins(self, update_repo):
+        plugins = [('adamantium', 'foo'), ('eternium', 'bar')]
+        self.command.get_plugins_to_update = Mock(return_value=plugins)
         self.command.update_plugin_for_info = Mock(return_value=('foo', 'bar'))
         self.command.update_plugins()
         self.assertEqual(self.command.update_plugin_for_info.call_args_list, [

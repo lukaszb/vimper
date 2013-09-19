@@ -21,6 +21,13 @@ def get_plugins(config):
     data = yaml.load(open(config.plugins_config))
     return data.get('plugins', {})
 
+def get_existing_plugins(config):
+    """
+    Returns list of plugins that are currently enabled locally. Those would be
+    names of directories within bundle directory.
+    """
+    return os.listdir(config.bundle_path)
+
 
 class BaseVimperCommandMixin(object):
     """
@@ -69,7 +76,10 @@ class BaseVimperCommandMixin(object):
 
 class UpdateCommand(BaseVimperCommandMixin, BaseCommand):
     args = BaseCommand.args + [
-        arg('-r', '--recreate-plugins', action='store_true', default=False),
+        arg('-r', '--recreate-plugins', action='store_true', default=False,
+            help="Forces to recreate local plugin repositories"),
+        arg('-n', '--only-new', action='store_true', default=False,
+            help='Updates only plugins that are not enabled yet'),
     ]
 
     def handle(self, namespace):
@@ -111,9 +121,16 @@ class UpdateCommand(BaseVimperCommandMixin, BaseCommand):
         name, uri = info
         return self.update_plugin(name, uri)
 
+    def get_plugins_to_update(self):
+        plugins = sorted(get_plugins(self.config).items())
+        if self.namespace.only_new:
+            existing = get_existing_plugins(self.config)
+            plugins = [(name, val) for name, val in plugins if name not in existing]
+        return plugins
+
     def update_plugins(self):
         self.info('Updating plugins')
-        plugins = sorted(get_plugins(self.config).items())
+        plugins = self.get_plugins_to_update()
         with futures.ThreadPoolExecutor(20) as executor:
             for name, uri in executor.map(self.update_plugin_for_info, plugins):
                 message = 'Updated "%s" at "%s"' % (name, uri)
