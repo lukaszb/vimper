@@ -153,6 +153,7 @@ let NERDTreeWinSize=50
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType html set filetype=htmldjango
 autocmd BufEnter *.html set ft=htmldjango
+autocmd BufRead,BufNewFile *.applescript set filetype=applescript
 
 " closetag
 autocmd Filetype html,xml,xsl source ~/.vim/bundle/closetag/plugin/closetag.vim
