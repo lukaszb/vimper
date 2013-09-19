@@ -144,6 +144,7 @@ imap <D-[> <C-O><<
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.orig', '\.swp\*', '__pycache__']
 let NERDTreeHighlightCursorline=1
 let NERDTreeWinSize=50
+:nmap <C-m> :execute 'NERDTreeMirror'<CR>
 
 
 " ==============================================================================
@@ -242,7 +243,9 @@ nnoremap <C-h> :GundoToggle<CR>
 " Multiple-Cursors
 " ==============================================================================
 let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_next_key='<C-m>'
+let g:multi_cursor_next_key='<C-b>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<C-c>'
 
 
