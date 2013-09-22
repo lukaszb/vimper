@@ -138,13 +138,12 @@ imap <D-[> <C-O><<
 
 
 " ==============================================================================
-" NERDTree configuration
+" NERDTree & NERDTreeTabs configuration
 " ==============================================================================
-:nmap <C-N> :execute 'NERDTreeToggle ' .getcwd() <CR>
+:nmap <C-N> :execute 'NERDTreeTabsToggle' <CR>
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.orig', '\.swp\*', '__pycache__']
 let NERDTreeHighlightCursorline=1
 let NERDTreeWinSize=50
-:nmap <C-m> :execute 'NERDTreeMirror'<CR>
 
 
 " ==============================================================================
