@@ -26,7 +26,7 @@ class Config(object):
         config_string = io.StringIO(self.default_config)
         self.parser.readfp(config_string)
         self.parser.read(self.config_filename)
-        
+
         self.lair_url = self.parser.get('lair', 'url')
         self.lair_path = os.path.expanduser(self.parser.get('lair', 'path'))
         self.bundle_path = abspath(self.lair_path, 'vim', 'bundle')
