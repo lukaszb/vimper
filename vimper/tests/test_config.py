@@ -11,7 +11,7 @@ class TestConfig(unittest.TestCase):
         config = Config()
         config.config_filename = ''
         config.setup()
-        
+
         self.assertEqual(config.lair_url, 'git@github.com:lukaszb/vimper-lair.git')
 
         lair_path = os.path.expanduser('~/.vimper')
@@ -37,11 +37,11 @@ class TestConfig(unittest.TestCase):
             tmp.write('\n'.join([
                 '[lair]',
                 'path = ~/.foo',
-            ]))
+            ]).encode('utf-8'))
             tmp.flush()
             config.config_filename = tmp.name
             config.setup()
-        
+
         self.assertEqual(config.lair_url, 'foo-bar')
         self.assertEqual(config.lair_path, os.path.expanduser('~/.foo'))
 

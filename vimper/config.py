@@ -7,7 +7,7 @@ import os
 
 VIMPER_CONFIG = os.path.expanduser('~/.vimperconfig')
 
-DEFAULT_CONFIG = b'''
+DEFAULT_CONFIG = '''
 [lair]
 url = git@github.com:lukaszb/vimper-lair.git
 path = ~/.vimper
@@ -23,7 +23,8 @@ class Config(object):
 
     def setup(self):
         self.parser = ConfigParser()
-        self.parser.readfp(io.BytesIO(self.default_config))
+        config_string = io.StringIO(self.default_config)
+        self.parser.readfp(config_string)
         self.parser.read(self.config_filename)
         
         self.lair_url = self.parser.get('lair', 'url')
