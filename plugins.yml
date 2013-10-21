@@ -48,5 +48,6 @@ plugins:
 
   # snippets
   ulti-snips: git://github.com/SirVer/ultisnips.git
+  keyboard_cat: git://github.com/natw/keyboard_cat.vim
 
 # vim: tabstop=2 shiftwidth=2 softtabstop=2
