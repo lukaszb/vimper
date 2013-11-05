@@ -42,6 +42,7 @@ plugins:
   applescript: git@github.com:vim-scripts/applescript.vim.git
   coffee: git://github.com/kchmck/vim-coffee-script.git
   django: git://github.com/vim-scripts/django.vim.git
+  go: git@github.com:lukaszb/vimper-lair.git
   riv: git://github.com/Rykka/riv.vim.git # restructuredText
   salt: git@github.com:saltstack/salt-vim.git
   scala: git@github.com:derekwyatt/vim-scala.git
