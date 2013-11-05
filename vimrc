@@ -30,8 +30,6 @@ nnoremap ' `
 nnoremap ` '
 let mapleader=','
 
-set foldlevelstart=10 " open file with all 10-depth folds opened
-
 " numbering
 set ruler
 set number
@@ -250,10 +248,6 @@ let g:multi_cursor_prev_key='<C-p>'
 let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<C-c>'
 
-" ==============================================================================
-" Riv (rst support)
-" ==============================================================================
-let g:riv_python_rst_hl=1
 
 " Include user's local vim config
 if filereadable(expand("~/.vimrc.after"))
