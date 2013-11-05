@@ -50,4 +50,8 @@ plugins:
   ulti-snips: git://github.com/SirVer/ultisnips.git
   keyboard_cat: git://github.com/natw/keyboard_cat.vim
 
+  # javascript
+  jshint2: git@github.com:Shutnik/jshint2.vim.git
+  syntastic: git@github.com:scrooloose/syntastic.git
+
 # vim: tabstop=2 shiftwidth=2 softtabstop=2

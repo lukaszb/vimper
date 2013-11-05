@@ -249,6 +249,17 @@ let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<C-c>'
 
 
+" ==============================================================================
+" Syntastic
+" ==============================================================================
+let g:syntastic_check_on_open=0
+let g:syntastic_check_on_wq=0 " default
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'active_filetypes': ['javascript'],
+                           \ }
+
 " Include user's local vim config
 if filereadable(expand("~/.vimrc.after"))
   source ~/.vimrc.after
