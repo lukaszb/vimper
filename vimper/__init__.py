@@ -25,7 +25,10 @@ def main():
     update_sys_path()
     from monolith.cli import SimpleExecutionManager
     manager = SimpleExecutionManager('vimper', commands={
+        'enable': 'vimper.commands.EnablePluginCommand',
+        'disable': 'vimper.commands.DisablePluginCommand',
         'link': 'vimper.commands.LinkCommand',
+        'list': 'vimper.commands.ListPluginsCommand',
         'update': 'vimper.commands.UpdateCommand',
     })
     manager.execute()

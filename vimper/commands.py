@@ -5,6 +5,7 @@ from .utils import abspath
 from .utils import update_repo
 from .compat import futures
 from monolith.cli import BaseCommand
+from monolith.cli import LabelCommand
 from monolith.cli import arg
 import datetime
 import os
@@ -29,6 +30,11 @@ def get_existing_plugins(config):
     return os.listdir(config.bundle_path)
 
 
+class Verbosity:
+    INFO = 1
+    DEBUG = 2
+
+
 class BaseVimperCommandMixin(object):
     """
     Simple class for printing out messages to terminal. Not to be confused with
@@ -36,11 +42,11 @@ class BaseVimperCommandMixin(object):
     """
     INFO_COLOR = 'blue'
     SUB_INFO_COLOR = 'green'
-    debug = False
 
     def __init__(self, *args, **kwargs):
         super(BaseVimperCommandMixin, self).__init__(*args, **kwargs)
         self.config = config.Config()
+        self.verbosity = Verbosity.DEBUG # TODO: Add -v/-vv switches to parser
 
     def log(self, msg, **kwargs):
         if sys.platform != 'win32':
@@ -48,16 +54,18 @@ class BaseVimperCommandMixin(object):
         print(msg, file=self.stdout)
 
     def raw_info(self, msg):
-        self.log(msg, color=self.INFO_COLOR)
+        if self.verbosity >= Verbosity.INFO:
+            self.log(msg, color=self.INFO_COLOR)
 
     def info(self, msg):
         self.raw_info(' * %s' % msg)
 
     def sub_info(self, msg):
-        self.log('   ==> %s' % msg, color=self.SUB_INFO_COLOR)
+        if self.verbosity >= Verbosity.INFO:
+            self.log('   ==> %s' % msg, color=self.SUB_INFO_COLOR)
 
     def raw_debug(self, msg):
-        if self.debug:
+        if self.verbosity >= Verbosity.DEBUG:
             self.log(msg, color='blue')
 
     def debug(self, msg):
@@ -68,6 +76,9 @@ class BaseVimperCommandMixin(object):
 
     def warn(self, msg):
         self.raw_warn(' * %s' % msg)
+
+    def get_plugins(self):
+        return get_plugins(self.config)
 
     #def raw_error(self, msg):
         #self.log(msg, color='white', on_color='on_red')
@@ -93,6 +104,7 @@ class UpdateCommand(BaseVimperCommandMixin, BaseCommand):
 
     def update_vimper_repo(self):
         self.info('Updating vimper repository at %r' % self.config.lair_path)
+        self.debug('Pulling from %r' % self.config.lair_url)
         update_repo(self.config.lair_path, self.config.lair_url)
         self.info('Done')
 
@@ -138,11 +150,7 @@ class UpdateCommand(BaseVimperCommandMixin, BaseCommand):
 
 
 
-class LinkCommand(BaseVimperCommandMixin, BaseCommand):
-
-    def handle(self, namespace):
-        self.link_vimper()
-        self.link_plugins()
+class LinkCommandMixin(object):
 
     def link(self, dst, src):
         now = datetime.datetime.now()
@@ -167,6 +175,34 @@ class LinkCommand(BaseVimperCommandMixin, BaseCommand):
             (self.config.user_gvimrc_path, self.config.gvimrc_path),
         )
 
+    def unlink_plugin(self, name):
+        src = abspath(self.config.bundle_path, name)
+        if os.path.islink(src):
+            os.unlink(src)
+            self.info('Removed link %s' % src)
+        else:
+            self.warn('Link at %s does not exist' % src)
+
+    def get_plugin_link_path(self, name):
+        return  abspath(self.config.bundle_path, name)
+
+    def link_plugin(self, name):
+        src = self.get_plugin_link_path(name)
+        dst = get_plugin_repo_path(self.config, name)
+        if not os.path.islink(dst):
+            self.link(src, dst)
+
+    def is_enabled(self, name):
+        src = self.get_plugin_link_path(name)
+        return os.path.exists(src)
+
+
+class LinkCommand(BaseVimperCommandMixin, LinkCommandMixin, BaseCommand):
+
+    def handle(self, namespace):
+        self.link_vimper()
+        self.link_plugins()
+
     def link_vimper(self):
         # Create links and backup if needed
         for src, dst in self.get_links():
@@ -174,9 +210,40 @@ class LinkCommand(BaseVimperCommandMixin, BaseCommand):
             self.link(src, dst)
 
     def link_plugins(self):
-        plugins = get_plugins(self.config)
+        plugins = self.get_plugins()
         for name in plugins:
-            src = abspath(self.config.bundle_path, name)
-            dst = get_plugin_repo_path(self.config, name)
-            self.link(src, dst)
+            self.link_plugin(name)
+
+
+class ListPluginsCommand(BaseVimperCommandMixin, LinkCommandMixin, BaseCommand):
+
+    args = [
+        arg('-p', '--plain', dest='plain', default=False, action='store_true',
+            help="Doesn't show if plugin is enabled or disabled"),
+    ]
+
+    def handle(self, namespace):
+        plugins = self.get_plugins()
+        for name in sorted(plugins):
+            msg = name
+            if not namespace.plain:
+                if self.is_enabled(name):
+                    info = termcolor.colored('[Enabled]', 'green')
+                else:
+                    info = termcolor.colored('[Disabled]', 'red')
+                msg += ' ' + info
+
+            self.log(msg)
+
+
+class EnablePluginCommand(BaseVimperCommandMixin, LinkCommandMixin, LabelCommand):
+
+    def handle_label(self, label, namespace):
+        self.link_plugin(label)
+
+
+class DisablePluginCommand(BaseVimperCommandMixin, LinkCommandMixin, LabelCommand):
+
+    def handle_label(self, label, namespace):
+        self.unlink_plugin(label)
 
