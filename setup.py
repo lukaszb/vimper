@@ -48,6 +48,11 @@ setup(
     tests_require=['pytest', 'mock'],
     cmdclass={'test': PyTest},
     include_package_data=True,
+    entry_points={
+        'console_scripts': [
+            'vimper = vimper:main',
+        ],
+    },
     classifiers=[
         'Development Status :: 4 - Beta',
         'License :: OSI Approved :: MIT License',
