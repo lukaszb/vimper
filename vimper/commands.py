@@ -48,9 +48,10 @@ class BaseVimperCommandMixin(object):
         self.config = config.Config()
         self.verbosity = Verbosity.DEBUG # TODO: Add -v/-vv switches to parser
 
-    def log(self, msg, **kwargs):
+    def log(self, msg, color=None):
         if sys.platform != 'win32':
-            msg = termcolor.colored(msg, **kwargs)
+            if color:
+                msg = termcolor.colored(msg, color)
         print(msg, file=self.stdout)
 
     def raw_info(self, msg):
@@ -181,7 +182,7 @@ class LinkCommandMixin(object):
             os.unlink(src)
             self.info('Removed link %s' % src)
         else:
-            self.warn('Link at %s does not exist' % src)
+            self.warn('Link at %r does not exist' % src)
 
     def get_plugin_link_path(self, name):
         return  abspath(self.config.bundle_path, name)
@@ -246,4 +247,10 @@ class DisablePluginCommand(BaseVimperCommandMixin, LinkCommandMixin, LabelComman
 
     def handle_label(self, label, namespace):
         self.unlink_plugin(label)
+
+
+class SampleConfigCommand(BaseVimperCommandMixin, BaseCommand):
+
+    def handle(self, namespace):
+        print(config.DEFAULT_CONFIG)
 

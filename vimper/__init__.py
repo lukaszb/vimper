@@ -30,6 +30,7 @@ def main():
         'link': 'vimper.commands.LinkCommand',
         'list': 'vimper.commands.ListPluginsCommand',
         'update': 'vimper.commands.UpdateCommand',
+        'sample-config': 'vimper.commands.SampleConfigCommand',
     })
     manager.execute()
 
