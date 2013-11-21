@@ -30,6 +30,8 @@ nnoremap ' `
 nnoremap ` '
 let mapleader=','
 
+set foldlevelstart=10 " open file with all 10-depth folds opened
+
 " numbering
 set ruler
 set number
@@ -248,14 +250,18 @@ let g:multi_cursor_prev_key='<C-p>'
 let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<C-c>'
 
+" ==============================================================================
+" Riv (rst support)
+" ==============================================================================
+let g:riv_python_rst_hl=1
 
 " ==============================================================================
 " Syntastic
 " ==============================================================================
 let g:syntastic_check_on_open=0
 let g:syntastic_check_on_wq=0 " default
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
+let g:syntastic_error_symbol='E'
+let g:syntastic_warning_symbol='W'
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': ['javascript'],
                            \ }
