@@ -6,7 +6,7 @@ endif
 " ==============================================================================
 " Pathogen
 " ==============================================================================
-call pathogen#incubate()
+call pathogen#infect()
 call pathogen#helptags()
 
 " Quickly edit/reload the vimrc file
@@ -194,6 +194,7 @@ endif
 " Python-Mode
 " ==============================================================================
 
+"let g:pymode = 1
 let g:pymode_options = 0
 let g:pymode_syntax = 0
 let g:pymode_rope_guess_project = 1
@@ -227,8 +228,85 @@ let g:Powerline_symbols = 'fancy'
 " ==============================================================================
 " CtrlP
 " ==============================================================================
-let g:ctrlp_custom_ignore = '\v(build|dist)[\/]'
-let g:ctrlp_working_path_mode = '' " default is 'ra'
+
+" Almost all the config was taken from vimfiles repo
+
+" No default mappings.
+let g:ctrlp_map = ''
+
+" Directory mode for launching ':CtrlP' with no directory argument:
+"   0 - Don't manage the working directory (Vim's CWD will be used).
+"       Same as ':CtrlP $PWD'.
+let g:ctrlp_working_path_mode = 0
+
+" Set to list of marker directories used for ':CtrlPRoot'.
+" A marker signifies that the containing parent directory is a "root".  Each
+" marker is probed from current working directory all the way up, and if
+" the marker is not found, then the next marker is checked.
+let g:ctrlp_root_markers = []
+
+" Don't open multiple files in vertical splits.  Just open them, and re-use the
+" buffer already at the front.
+let g:ctrlp_open_multiple_files = '1vr'
+
+" :C [path]  ==> :CtrlP [path]
+command! -n=? -com=dir C CtrlP <args>
+
+" :CD [path]  ==> :CtrlPDir [path]
+command! -n=? -com=dir CD CtrlPDir <args>
+
+" Define prefix mapping for CtrlP plugin so that buffer-local mappings
+" for CTRL-P (such as in Tagbar) will override all CtrlP plugin mappings.
+nmap <C-P> <SNR>CtrlP.....
+
+" An incomplete mapping should do nothing.
+nnoremap <SNR>CtrlP.....      <Nop>
+
+nnoremap <SNR>CtrlP.....<C-B> :<C-U>CtrlPBookmarkDir<CR>
+nnoremap <SNR>CtrlP.....c     :<C-U>CtrlPChange<CR>
+nnoremap <SNR>CtrlP.....C     :<C-U>CtrlPChangeAll<CR>
+nnoremap <SNR>CtrlP.....<C-D> :<C-U>CtrlPDir<CR>
+nnoremap <SNR>CtrlP.....<C-F> :<C-U>CtrlPCurFile<CR>
+nnoremap <SNR>CtrlP.....<C-L> :<C-U>CtrlPLine<CR>
+nnoremap <SNR>CtrlP.....<C-M> :<C-U>CtrlPMRU<CR>
+nnoremap <SNR>CtrlP.....m     :<C-U>CtrlPMixed<CR>
+
+" Mnemonic: "open files"
+nnoremap <SNR>CtrlP.....<C-O> :<C-U>CtrlPBuffer<CR>
+nnoremap <SNR>CtrlP.....<C-P> :<C-U>CtrlP<CR>
+nnoremap <SNR>CtrlP.....<C-Q> :<C-U>CtrlPQuickfix<CR>
+nnoremap <SNR>CtrlP.....<C-R> :<C-U>CtrlPRoot<CR>
+nnoremap <SNR>CtrlP.....<C-T> :<C-U>CtrlPTag<CR>
+nnoremap <SNR>CtrlP.....t     :<C-U>CtrlPBufTag<CR>
+nnoremap <SNR>CtrlP.....T     :<C-U>CtrlPBufTagAll<CR>
+nnoremap <SNR>CtrlP.....<C-U> :<C-U>CtrlPUndo<CR>
+
+" Transitional mappings to migrate from historical Command-T functionality.
+" At first, redirect to CtrlP equivalent functionality.  Later, just
+" provide an error message.  Eventually, remove this mappings.
+nnoremap <leader><leader>t :<C-U>echoe "Use CTRL-P CTRL-P instead"<Bar>
+            \ sleep 1<Bar>
+            \ CtrlP<CR>
+
+nnoremap <leader><leader>b :<C-U>echoe "Use CTRL-P CTRL-O instead"<Bar>
+            \ sleep 1<Bar>
+            \ CtrlPBuffer<CR>
+
+" Reverse move and history binding pairs:
+" - For consistency with other plugins that use <C-N>/<C-P> for moving around.
+" - Because <C-J> is bound to the tmux prefix key, so it's best to map
+"   that key to a less-used function.
+let g:ctrlp_prompt_mappings = {
+    \ 'PrtSelectMove("j")':   ['<C-N>', '<down>'],
+    \ 'PrtSelectMove("k")':   ['<C-P>', '<up>'],
+    \ 'PrtHistory(-1)':       ['<C-J>'],
+    \ 'PrtHistory(1)':        ['<C-K>'],
+    \ }
+
+" Maximum height of filename window.
+let g:ctrlp_max_height = 50
+
+let g:ctrlp_custom_ignore = '\v(build|dist|__pycache__)[\/]'
 
 " ==============================================================================
 " Tagbar [ctags]
