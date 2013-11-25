@@ -155,6 +155,7 @@ class LinkCommandMixin(object):
 
     def link(self, dst, src):
         now = datetime.datetime.now()
+        do_link = True
         if os.path.islink(dst):
             orgpath = os.readlink(dst)
             self.debug("Found link: %s => %s" % (dst, orgpath))
@@ -165,9 +166,12 @@ class LinkCommandMixin(object):
             shutil.move(dst, newpath)
             self.debug("Moved %s to %s" % (dst, newpath))
         else:
-            self.debug("No entry at %s" % dst)
-        os.symlink(src, dst)
-        self.info("Created link %s ==> %s" % (dst, src))
+            self.warn("No entry at %s" % dst)
+            do_link = False
+
+        if do_link:
+            os.symlink(src, dst)
+            self.info("Created link %s ==> %s" % (dst, src))
 
     def get_links(self):
         return (
