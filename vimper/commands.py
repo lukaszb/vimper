@@ -153,24 +153,25 @@ class UpdateCommand(BaseVimperCommandMixin, BaseCommand):
 
 class LinkCommandMixin(object):
 
-    def link(self, dst, src):
+    def link(self, src, dst):
         now = datetime.datetime.now()
         do_link = True
-        if os.path.islink(dst):
-            orgpath = os.readlink(dst)
-            self.debug("Found link: %s => %s" % (dst, orgpath))
-            os.remove(dst)
-            self.warn("Removed link %s " % dst)
-        elif os.path.exists(dst):
-            newpath = '%s-%s' % (dst, now.strftime(self.config.datetime_format))
-            shutil.move(dst, newpath)
-            self.debug("Moved %s to %s" % (dst, newpath))
-        else:
+        if os.path.islink(src):
+            orgpath = os.readlink(src)
+            self.debug("Found link: %s => %s" % (src, orgpath))
+            os.remove(src)
+            self.warn("Removed link %s " % src)
+        elif os.path.exists(src):
+            newpath = '%s-%s' % (src, now.strftime(self.config.datetime_format))
+            shutil.move(src, newpath)
+            self.debug("Moved %s to %s" % (src, newpath))
+        if not os.path.exists(dst):
             self.warn("No entry at %s" % dst)
             do_link = False
 
         if do_link:
-            os.symlink(src, dst)
+            # os.symlink expects first argument to be link's target
+            os.symlink(dst, src)
             self.info("Created link %s ==> %s" % (dst, src))
 
     def get_links(self):
@@ -194,7 +195,7 @@ class LinkCommandMixin(object):
     def link_plugin(self, name):
         src = self.get_plugin_link_path(name)
         dst = get_plugin_repo_path(self.config, name)
-        if not os.path.islink(dst):
+        if not os.path.islink(src):
             self.link(src, dst)
 
     def is_enabled(self, name):
