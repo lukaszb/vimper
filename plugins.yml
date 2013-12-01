@@ -15,6 +15,7 @@ plugins:
   pyflakes: git://github.com/vim-scripts/pyflakes.vim.git
   python-mode: git://github.com/klen/python-mode.git
   repeat: git://github.com/tpope/vim-repeat.git
+  simple-pairs: git@github.com:vim-scripts/simple-pairs.git
   singlecompile: git://github.com/xuhdev/SingleCompile.git
   superpy: git://github.com/lukaszb/superpy.git
   supertab: git://github.com/ervandew/supertab.git
