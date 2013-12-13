@@ -45,6 +45,7 @@ plugins:
   django: git://github.com/vim-scripts/django.vim.git
   go: git@github.com:lukaszb/vimper-lair.git
   riv: git://github.com/Rykka/riv.vim.git # restructuredText
+  vim-json: git@github.com:elzr/vim-json.git
   salt: git@github.com:saltstack/salt-vim.git
   scala: git@github.com:derekwyatt/vim-scala.git
 
