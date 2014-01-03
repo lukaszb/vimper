@@ -5,6 +5,7 @@ from mock import patch
 from vimper.config import Config
 from vimper.commands import get_plugins
 from vimper.commands import get_existing_plugins
+from vimper.commands import LinkCommand
 from vimper.commands import UpdateCommand
 from vimper.utils import abspath
 import os
@@ -127,3 +128,20 @@ class TestUpdateCommand(unittest.TestCase):
         self.assertEqual(self.command.update_plugin_for_info.call_args_list, [
         call(('adamantium', 'foo')), call(('eternium', 'bar'))])
 
+
+class TestLinkCommand(unittest.TestCase):
+
+    def setUp(self):
+        self.command = LinkCommand()
+
+    def test_handle(self):
+        namespace = Mock()
+        manager = Mock()
+        self.command.link_vimper = manager.link_vimper
+        self.command.link_plugins = manager.link_plugins
+
+        self.command.handle(namespace)
+        self.assertEqual(manager.method_calls, [
+            call.link_vimper(),
+            call.link_plugins(),
+        ])
