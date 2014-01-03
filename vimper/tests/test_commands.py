@@ -74,7 +74,7 @@ class TestUpdateCommand(unittest.TestCase):
         tempdir = tempfile.mkdtemp()
         shutil.rmtree(tempdir)
         self.command.get_dirnames_to_create = Mock(return_value=[tempdir])
-        self.command.makedirs() # should not raise OSError here
+        self.command.makedirs()  # should not raise OSError here
         self.assertTrue(os.path.isdir(tempdir))
 
     @patch('vimper.commands.update_repo')
@@ -112,7 +112,8 @@ class TestUpdateCommand(unittest.TestCase):
     @patch('vimper.commands.get_plugins')
     @patch('vimper.commands.get_existing_plugins')
     def test_get_plugins_to_update_respects_only_new_flag(self,
-        get_existing_plugins, get_plugins):
+                                                          get_existing_plugins,
+                                                          get_plugins):
 
         get_plugins.return_value = {'solarized': 1, 'ctrlp': 2, 'nerdtree': 3}
         get_existing_plugins.return_value = ['nerdtree', 'solarized']
@@ -126,7 +127,9 @@ class TestUpdateCommand(unittest.TestCase):
         self.command.update_plugin_for_info = Mock(return_value=('foo', 'bar'))
         self.command.update_plugins()
         self.assertEqual(self.command.update_plugin_for_info.call_args_list, [
-        call(('adamantium', 'foo')), call(('eternium', 'bar'))])
+            call(('adamantium', 'foo')),
+            call(('eternium', 'bar'))
+        ])
 
 
 class TestLinkCommand(unittest.TestCase):
