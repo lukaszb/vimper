@@ -47,13 +47,21 @@ class TestUpdateCommand(unittest.TestCase):
         self.command.stdout = open(os.devnull, 'w')
 
     def test_handle(self):
-        self.command.update_vimper_repo = Mock()
-        self.command.makedirs = Mock()
-        self.command.update_plugins = Mock()
+        manager = Mock()
+        self.command.update_vimper_repo = manager.update_vimper_repo
+        self.command.makedirs = manager.makedirs
+        self.command.update_plugins = manager.update_plugins
+        self.command.handle_links = manager.handle_links
 
-        self.command.handle(Namespace())
-        self.command.update_vimper_repo.assert_called_once_with()
-        self.command.makedirs.assert_called_once_with()
+        namespace = Namespace()
+        self.command.handle(namespace)
+
+        self.assertEqual(manager.method_calls, [
+            call.update_vimper_repo(),
+            call.makedirs(),
+            call.update_plugins(),
+            call.handle_links(namespace),
+        ])
 
     @patch('vimper.commands.update_repo')
     def test_update_vimper_repo(self, update_repo):
@@ -131,6 +139,18 @@ class TestUpdateCommand(unittest.TestCase):
             call(('eternium', 'bar'))
         ])
 
+    @patch('vimper.commands.LinkCommand')
+    def test_handle_links(self, LinkCommand):
+        link_command = Mock()
+        LinkCommand.return_value = link_command
+
+        self.command.handle_links(Namespace())
+
+        self.assertEqual(link_command.method_calls, [
+            call.link_vimper(),
+            call.link_plugins(),
+        ])
+
 
 class TestLinkCommand(unittest.TestCase):
 
@@ -147,4 +167,44 @@ class TestLinkCommand(unittest.TestCase):
         self.assertEqual(manager.method_calls, [
             call.link_vimper(),
             call.link_plugins(),
+        ])
+
+    def test_link_vimper(self):
+        links = [('src1', 'dst1'), ('src2', 'dst2')]
+        self.command.get_links = Mock(return_value=links)
+        self.command.link = Mock()
+
+        self.command.link_vimper()
+
+        self.assertEqual(self.command.link.call_args_list, [
+            call('src1', 'dst1'),
+            call('src2', 'dst2'),
+        ])
+
+    def test_link_plugins(self):
+        self.command.get_plugins = Mock(return_value=['foo', 'bar'])
+        self.command.link_plugin = Mock()
+
+        plugins = ['auto-pairs', 'ctrlp', 'nerdtree', 'powerline']
+        self.command.link_plugins(plugins)
+
+        self.assertEqual(self.command.link_plugin.call_args_list, [
+            call('auto-pairs'),
+            call('ctrlp'),
+            call('nerdtree'),
+            call('powerline'),
+        ])
+
+    def test_link_plugins_default(self):
+        plugins = ['auto-pairs', 'ctrlp', 'nerdtree', 'powerline']
+        self.command.get_plugins = Mock(return_value=plugins)
+        self.command.link_plugin = Mock()
+
+        self.command.link_plugins()
+
+        self.assertEqual(self.command.link_plugin.call_args_list, [
+            call('auto-pairs'),
+            call('ctrlp'),
+            call('nerdtree'),
+            call('powerline'),
         ])

@@ -99,7 +99,12 @@ class UpdateCommand(BaseVimperCommandMixin, BaseCommand):
         self.makedirs()
         self.update_plugins()
 
-        LinkCommand().handle(namespace)
+        self.handle_links(namespace)
+
+    def handle_links(self, namespace):
+        link_command = LinkCommand()
+        link_command.link_vimper()
+        link_command.link_plugins()
 
     def update_vimper_repo(self):
         self.info('Updating vimper repository at %r' % self.config.lair_path)
@@ -215,8 +220,9 @@ class LinkCommand(BaseVimperCommandMixin, LinkCommandMixin, BaseCommand):
             self.info('Re-linking %s -> %s' % (src, dst))
             self.link(src, dst)
 
-    def link_plugins(self):
-        plugins = self.get_plugins()
+    def link_plugins(self, plugins=None):
+        if plugins is None:
+            plugins = self.get_plugins()
         for name in plugins:
             self.link_plugin(name)
 
