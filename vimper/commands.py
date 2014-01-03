@@ -18,9 +18,11 @@ import yaml
 def get_plugin_repo_path(config, name):
     return abspath(config.plugins_path, name)
 
+
 def get_plugins(config):
     data = yaml.load(open(config.plugins_config))
     return data.get('plugins', {})
+
 
 def get_existing_plugins(config):
     """
@@ -46,7 +48,7 @@ class BaseVimperCommandMixin(object):
     def __init__(self, *args, **kwargs):
         super(BaseVimperCommandMixin, self).__init__(*args, **kwargs)
         self.config = config.Config()
-        self.verbosity = Verbosity.DEBUG # TODO: Add -v/-vv switches to parser
+        self.verbosity = Verbosity.DEBUG  # TODO: Add -v/-vv switches to parser
 
     def log(self, msg, color=None):
         if sys.platform != 'win32':
@@ -80,10 +82,6 @@ class BaseVimperCommandMixin(object):
 
     def get_plugins(self):
         return get_plugins(self.config)
-
-    #def raw_error(self, msg):
-        #self.log(msg, color='white', on_color='on_red')
-
 
 
 class UpdateCommand(BaseVimperCommandMixin, BaseCommand):
@@ -138,17 +136,18 @@ class UpdateCommand(BaseVimperCommandMixin, BaseCommand):
         plugins = sorted(get_plugins(self.config).items())
         if self.namespace.only_new:
             existing = get_existing_plugins(self.config)
-            plugins = [(name, val) for name, val in plugins if name not in existing]
+            plugins = [(name, val) for name, val in plugins
+                       if name not in existing]
         return plugins
 
     def update_plugins(self):
         self.info('Updating plugins')
         plugins = self.get_plugins_to_update()
         with futures.ThreadPoolExecutor(20) as executor:
-            for name, uri in executor.map(self.update_plugin_for_info, plugins):
+            iterator = executor.map(self.update_plugin_for_info, plugins)
+            for name, uri in iterator:
                 message = 'Updated "%s" at "%s"' % (name, uri)
                 self.sub_info(message)
-
 
 
 class LinkCommandMixin(object):
@@ -162,7 +161,8 @@ class LinkCommandMixin(object):
             os.remove(src)
             self.warn("Removed link %s " % src)
         elif os.path.exists(src):
-            newpath = '%s-%s' % (src, now.strftime(self.config.datetime_format))
+            suffix = now.strftime(self.config.datetime_format)
+            newpath = '%s-%s' % (src, suffix)
             shutil.move(src, newpath)
             self.debug("Moved %s to %s" % (src, newpath))
         if not os.path.exists(dst):
@@ -190,7 +190,7 @@ class LinkCommandMixin(object):
             self.warn('Link at %r does not exist' % src)
 
     def get_plugin_link_path(self, name):
-        return  abspath(self.config.bundle_path, name)
+        return abspath(self.config.bundle_path, name)
 
     def link_plugin(self, name):
         src = self.get_plugin_link_path(name)
@@ -221,7 +221,8 @@ class LinkCommand(BaseVimperCommandMixin, LinkCommandMixin, BaseCommand):
             self.link_plugin(name)
 
 
-class ListPluginsCommand(BaseVimperCommandMixin, LinkCommandMixin, BaseCommand):
+class ListPluginsCommand(BaseVimperCommandMixin, LinkCommandMixin,
+                         BaseCommand):
 
     args = [
         arg('-p', '--plain', dest='plain', default=False, action='store_true',
@@ -242,13 +243,15 @@ class ListPluginsCommand(BaseVimperCommandMixin, LinkCommandMixin, BaseCommand):
             self.log(msg)
 
 
-class EnablePluginCommand(BaseVimperCommandMixin, LinkCommandMixin, LabelCommand):
+class EnablePluginCommand(BaseVimperCommandMixin, LinkCommandMixin,
+                          LabelCommand):
 
     def handle_label(self, label, namespace):
         self.link_plugin(label)
 
 
-class DisablePluginCommand(BaseVimperCommandMixin, LinkCommandMixin, LabelCommand):
+class DisablePluginCommand(BaseVimperCommandMixin, LinkCommandMixin,
+                           LabelCommand):
 
     def handle_label(self, label, namespace):
         self.unlink_plugin(label)
@@ -258,4 +261,3 @@ class SampleConfigCommand(BaseVimperCommandMixin, BaseCommand):
 
     def handle(self, namespace):
         print(config.DEFAULT_CONFIG)
-
