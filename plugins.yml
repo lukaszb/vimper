@@ -1,6 +1,7 @@
 ---
 plugins:
   abolish: git://github.com/tpope/vim-abolish.git
+  auto-pairs: git@github.com:jiangmiao/auto-pairs.git
   closetag: git://github.com/docunext/closetag.vim.git
   ctrlp: git://github.com/kien/ctrlp.vim.git
   fugitive: git://github.com/tpope/vim-fugitive.git
@@ -15,7 +16,6 @@ plugins:
   pyflakes: git://github.com/vim-scripts/pyflakes.vim.git
   python-mode: git://github.com/klen/python-mode.git
   repeat: git://github.com/tpope/vim-repeat.git
-  simple-pairs: git@github.com:vim-scripts/simple-pairs.git
   singlecompile: git://github.com/xuhdev/SingleCompile.git
   superpy: git://github.com/lukaszb/superpy.git
   supertab: git://github.com/ervandew/supertab.git
