@@ -32,6 +32,8 @@ let mapleader=','
 
 set foldlevelstart=10 " open file with all 10-depth folds opened
 
+set splitright " vnew creates new buffer on the right
+
 " numbering
 set ruler
 set number
