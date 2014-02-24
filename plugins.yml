@@ -6,13 +6,14 @@ plugins:
   closetag: git://github.com/docunext/closetag.vim.git
   ctrlp: git://github.com/kien/ctrlp.vim.git
   fugitive: git://github.com/tpope/vim-fugitive.git
+  gist: git@github.com:mattn/gist-vim.git
   gundo: git://github.com/sjl/gundo.vim.git
   indent-object: git://github.com/michaeljsmith/vim-indent-object.git
   matchit: https://github.com/edsono/vim-matchit.git
   multiple-cursors: git://github.com/terryma/vim-multiple-cursors.git
   nerdcommenter: git://github.com/scrooloose/nerdcommenter.git
-  nerdtree: git://github.com/lukaszb/nerdtree.git
   nerdtree-tabs: git@github.com:jistr/vim-nerdtree-tabs.git
+  nerdtree: git://github.com/lukaszb/nerdtree.git
   nrrwrgn: git://github.com/chrisbra/NrrwRgn.git
   pyflakes: git://github.com/vim-scripts/pyflakes.vim.git
   python-mode: git://github.com/klen/python-mode.git
@@ -23,6 +24,7 @@ plugins:
   surround: https://github.com/tpope/vim-surround.git
   tagbar: git://github.com/majutsushi/tagbar.git
   unimpaired: git://github.com/tpope/vim-unimpaired.git
+  webapi: git@github.com:mattn/webapi-vim.git
   zoomwin: git://github.com/itspriddle/ZoomWin.git
 
   # Look & Feel
