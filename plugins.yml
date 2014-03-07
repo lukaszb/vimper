@@ -32,6 +32,7 @@ plugins:
   rainbow-parens: git://github.com/vim-scripts/Rainbow-Parentheses-Improved-and2.git
 
   # colors
+  base16: git@github.com:chriskempson/base16-vim.git
   getafe: https://github.com/larssmit/vim-getafe.git
   github: https://github.com/telamon/vim-color-github.git
   ir_black: git://github.com/lukaszb/vim-irblack.git
@@ -45,8 +46,11 @@ plugins:
   # syntax
   applescript: git@github.com:vim-scripts/applescript.vim.git
   coffee: git://github.com/kchmck/vim-coffee-script.git
+  css-color: git@github.com:skammer/vim-css-color.git
+  css3: git@github.com:hail2u/vim-css3-syntax.git
   django: git://github.com/vim-scripts/django.vim.git
   go: git@github.com:lukaszb/vimper-lair.git
+  less: git@github.com:groenewege/vim-less.git
   #riv: git://github.com/Rykka/riv.vim.git # restructuredText
   vim-json: git@github.com:elzr/vim-json.git
   salt: git@github.com:saltstack/salt-vim.git
