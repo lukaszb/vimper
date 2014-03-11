@@ -17,6 +17,7 @@ plugins:
   nrrwrgn: git://github.com/chrisbra/NrrwRgn.git
   pyflakes: git://github.com/vim-scripts/pyflakes.vim.git
   python-mode: git://github.com/klen/python-mode.git
+  rename: git@github.com:vim-scripts/Rename2.git
   repeat: git://github.com/tpope/vim-repeat.git
   singlecompile: git://github.com/xuhdev/SingleCompile.git
   superpy: git://github.com/lukaszb/superpy.git
