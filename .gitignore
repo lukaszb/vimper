@@ -1,3 +1,14 @@
+.hg
+.svn
+*.pyc
+*.swp
+*.tar
+*.tar.gz
+*.zip
+*.orig
+
+vim/.netrwhist
+vim/backup/*
 vim/bundle
 vim/plugins-repos
-vim/.netrwhist
+cache/*

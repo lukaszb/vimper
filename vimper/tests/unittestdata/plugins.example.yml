@@ -1,0 +1,5 @@
+---
+plugins:
+  ctrlp: git://github.com/kien/ctrlp.vim.git
+  nerdtree: git://github.com/lukaszb/nerdtree.git
+
