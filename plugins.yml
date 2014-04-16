@@ -5,6 +5,7 @@ plugins:
   auto-pairs: git@github.com:jiangmiao/auto-pairs.git
   closetag: git://github.com/docunext/closetag.vim.git
   ctrlp: git://github.com/kien/ctrlp.vim.git
+  delimit-mate: git@github.com:Raimondi/delimitMate.git
   fugitive: git://github.com/tpope/vim-fugitive.git
   gist: git@github.com:mattn/gist-vim.git
   gundo: git://github.com/sjl/gundo.vim.git
@@ -62,6 +63,9 @@ plugins:
   keyboard_cat: git://github.com/natw/keyboard_cat.vim
 
   # javascript
+  indent-guides: git@github.com:nathanaelkane/vim-indent-guides.git
+  javascript: git@github.com:pangloss/vim-javascript.git
+  javascript-syntax: git@github.com:jelera/vim-javascript-syntax.git
   jshint2: git@github.com:Shutnik/jshint2.vim.git
   syntastic: git@github.com:scrooloose/syntastic.git
 
