@@ -139,6 +139,9 @@ nmap <D-[> <<
 vmap <D-[> <<
 imap <D-[> <C-O><<
 
+" delimitMate split bracketes with newline
+imap <C-c> <CR><Esc>O
+
 
 
 " ==============================================================================
