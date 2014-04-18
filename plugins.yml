@@ -63,6 +63,7 @@ plugins:
   keyboard_cat: git://github.com/natw/keyboard_cat.vim
 
   # javascript
+  javascript: https://github.com/pangloss/vim-javascript.git
   jshint2: git@github.com:Shutnik/jshint2.vim.git
   syntastic: git@github.com:scrooloose/syntastic.git
 
