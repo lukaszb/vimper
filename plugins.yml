@@ -9,6 +9,7 @@ plugins:
   gist: git@github.com:mattn/gist-vim.git
   gundo: git://github.com/sjl/gundo.vim.git
   indent-object: git://github.com/michaeljsmith/vim-indent-object.git
+  indent-guides: git://github.com/nathanaelkane/vim-indent-guides.git
   matchit: https://github.com/edsono/vim-matchit.git
   multiple-cursors: git://github.com/terryma/vim-multiple-cursors.git
   nerdcommenter: git://github.com/scrooloose/nerdcommenter.git
