@@ -47,6 +47,10 @@ set backspace=indent,eol,start
 " sorting
 vnoremap <Leader>s :sort<CR>
 
+" set encoding
+scriptencoding utf-8
+set encoding=utf-8
+
 " Whitespace stuff
 set wrap
 set tabstop=4
