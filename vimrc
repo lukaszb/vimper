@@ -315,7 +315,7 @@ let g:ctrlp_prompt_mappings = {
 " Maximum height of filename window.
 let g:ctrlp_max_height = 50
 
-let g:ctrlp_custom_ignore = '\v(build|dist|__pycache__)[\/]'
+let g:ctrlp_custom_ignore = '\v(build|dist|__pycache__|node_modules|bower_components)[\/]'
 
 " ==============================================================================
 " Tagbar [ctags]
