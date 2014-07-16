@@ -216,11 +216,11 @@ let g:pymode_rope_enable_autoimport = 1
 let g:pymode_rope_autoimport_generate = 1
 let g:pymode_rope_autoimport_modules = ["os","shutil","datetime"]
 let g:pymode_rope_vim_completion = 1
-let g:pymode_rope_goto_def_newwin = "tabnew"
 
 let g:pymode_lint = 0
 
-map <C-g> :RopeGotoDefinition<CR>
+let g:pymode_rope_goto_definition_bind = '<C-g>'
+let g:pymode_rope_goto_definition_cmd = 'tabnew'
 
 " ==============================================================================
 " SingleCompile
