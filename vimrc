@@ -354,6 +354,11 @@ let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': ['javascript'],
                            \ }
 
+" ==============================================================================
+" UltiSnips
+" ==============================================================================
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+
 " Include user's local vim config
 if filereadable(expand("~/.vimrc.after"))
   source ~/.vimrc.after
