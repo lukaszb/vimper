@@ -2,7 +2,6 @@
 plugins:
   abolish: git://github.com/tpope/vim-abolish.git
   ack: git@github.com:mileszs/ack.vim.git
-  auto-pairs: git@github.com:jiangmiao/auto-pairs.git
   closetag: git://github.com/docunext/closetag.vim.git
   ctrlp: git://github.com/kien/ctrlp.vim.git
   delimit-mate: git@github.com:Raimondi/delimitMate.git
