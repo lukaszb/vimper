@@ -2,12 +2,12 @@
 plugins:
   abolish: git://github.com/tpope/vim-abolish.git
   ack: git@github.com:mileszs/ack.vim.git
-  auto-pairs: git@github.com:jiangmiao/auto-pairs.git
   closetag: git://github.com/docunext/closetag.vim.git
   ctrlp: git://github.com/kien/ctrlp.vim.git
   delimit-mate: git@github.com:Raimondi/delimitMate.git
   fugitive: git://github.com/tpope/vim-fugitive.git
   gist: git@github.com:mattn/gist-vim.git
+  go: git@github.com:fatih/vim-go.git
   gundo: git://github.com/sjl/gundo.vim.git
   indent-object: git://github.com/michaeljsmith/vim-indent-object.git
   matchit: https://github.com/edsono/vim-matchit.git

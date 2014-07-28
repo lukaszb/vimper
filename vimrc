@@ -216,11 +216,11 @@ let g:pymode_rope_enable_autoimport = 1
 let g:pymode_rope_autoimport_generate = 1
 let g:pymode_rope_autoimport_modules = ["os","shutil","datetime"]
 let g:pymode_rope_vim_completion = 1
-let g:pymode_rope_goto_def_newwin = "tabnew"
 
 let g:pymode_lint = 0
 
-map <C-g> :RopeGotoDefinition<CR>
+let g:pymode_rope_goto_definition_bind = '<C-g>'
+let g:pymode_rope_goto_definition_cmd = 'tabnew'
 
 " ==============================================================================
 " SingleCompile
@@ -315,7 +315,7 @@ let g:ctrlp_prompt_mappings = {
 " Maximum height of filename window.
 let g:ctrlp_max_height = 50
 
-let g:ctrlp_custom_ignore = '\v(build|dist|__pycache__)[\/]'
+let g:ctrlp_custom_ignore = '\v(build|dist|__pycache__|node_modules|bower_components)[\/]'
 
 " ==============================================================================
 " Tagbar [ctags]
@@ -353,6 +353,11 @@ let g:syntastic_warning_symbol='W'
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': ['javascript'],
                            \ }
+
+" ==============================================================================
+" UltiSnips
+" ==============================================================================
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 
 " Include user's local vim config
 if filereadable(expand("~/.vimrc.after"))
