@@ -40,6 +40,7 @@ plugins:
   ir_black: git://github.com/lukaszb/vim-irblack.git
   janus: git://github.com/TechnoGate/janus-colors.git
   molokai: https://github.com/vim-scripts/molokai.git
+  proton: git@github.com:vim-scripts/proton.git
   pyte: https://github.com/vim-scripts/pyte.git
   sampler-pack: https://github.com/vim-scripts/Colour-Sampler-Pack.git
   solarized: git://github.com/altercation/vim-colors-solarized.git
