@@ -52,7 +52,6 @@ plugins:
   css-color: git@github.com:skammer/vim-css-color.git
   css3: git@github.com:hail2u/vim-css3-syntax.git
   django: git://github.com/vim-scripts/django.vim.git
-  go: git@github.com:lukaszb/vimper-lair.git
   less: git@github.com:groenewege/vim-less.git
   #riv: git://github.com/Rykka/riv.vim.git # restructuredText
   vim-json: git@github.com:elzr/vim-json.git
