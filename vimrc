@@ -187,6 +187,12 @@ autocmd FileType sh map <buffer> <Leader>R :w<CR>:!/usr/bin/env sh % <CR>
 autocmd FileType javascript map <buffer> <Leader>rr :w<CR>:new<CR>:r!/usr/bin/env node # <CR>
 autocmd FileType javascript map <buffer> <Leader>R :w<CR>:!/usr/bin/env node % <CR>
 
+autocmd FileType go nmap <leader>R <CR>:GoRun %<CR>
+autocmd FileType go nmap <leader>rr <Plug>(go-run)
+"autocmd FileType go nmap <leader>b <Plug>(go-build)
+"autocmd FileType go nmap <leader>t <Plug>(go-test)
+"autocmd FileType go nmap <leader>c <Plug>(go-coverage)
+
 "
 " ==============================================================================
 " Load platform specific settings
