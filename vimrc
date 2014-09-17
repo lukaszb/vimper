@@ -72,7 +72,7 @@ set smartcase
 
 " Tab completion
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,*.rbc,.git,.hg,.svn,.bzr,*.pyc,*.egg,*.egg-info,.tox,.ropeproject
+set wildignore+=*.o,*.obj,*.rbc,.git,.hg,.svn,.bzr,*.pyc,*.egg,*.egg-info,.tox,.ropeproject,.venv
 
 "Directories for swp files
 set backupdir=~/.vim/backup
