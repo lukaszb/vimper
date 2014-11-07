@@ -49,7 +49,8 @@ plugins:
   # syntax
   applescript: git@github.com:vim-scripts/applescript.vim.git
   coffee: git://github.com/kchmck/vim-coffee-script.git
-  css-color: git@github.com:skammer/vim-css-color.git
+  # css-color makes opening certain html files VERY slow
+  # css-color: git@github.com:skammer/vim-css-color.git
   css3: git@github.com:hail2u/vim-css3-syntax.git
   django: git://github.com/vim-scripts/django.vim.git
   less: git@github.com:groenewege/vim-less.git
