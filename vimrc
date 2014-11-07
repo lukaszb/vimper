@@ -369,6 +369,26 @@ let g:syntastic_mode_map = { 'mode': 'active',
 " ==============================================================================
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 
+" ==============================================================================
+" Tabs
+" ==============================================================================
+
+function! Tab2()
+    set tabstop=2
+    set shiftwidth=2
+    set softtabstop=2
+endfunction
+
+function! Tab4()
+    set tabstop=4
+    set shiftwidth=4
+    set softtabstop=4
+endfunction
+
+command! -nargs=0 Tab2 call Tab2()
+command! -nargs=0 Tab4 call Tab4()
+
+
 " Include user's local vim config
 if filereadable(expand("~/.vimrc.after"))
   source ~/.vimrc.after
