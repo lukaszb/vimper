@@ -28,6 +28,7 @@ plugins:
   tagbar: git://github.com/majutsushi/tagbar.git
   unimpaired: git://github.com/tpope/vim-unimpaired.git
   unite: git@github.com:Shougo/unite.vim.git
+  vinegar: git://github.com/tpope/vim-vinegar.git
   webapi: git@github.com:mattn/webapi-vim.git
   zoomwin: git://github.com/itspriddle/ZoomWin.git
 
