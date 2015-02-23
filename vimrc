@@ -132,9 +132,9 @@ endif
 " CDC = Change to Directory of Current file
 command CDC cd %:p:h
 
-" Error marker at ~80 character
-autocmd BufWinEnter *.py,*.txt,*.rst,*.c,*.cpp let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-set colorcolumn=81
+" Error marker at ~100 character
+autocmd BufWinEnter *.py,*.txt,*.rst,*.c,*.cpp let w:m2=matchadd('ErrorMsg', '\%>100v.\+', -1)
+set colorcolumn=101
 
 " Better indentation
 vnoremap < <gv
@@ -326,7 +326,7 @@ let g:ctrlp_prompt_mappings = {
 " Maximum height of filename window.
 let g:ctrlp_max_height = 50
 
-let g:ctrlp_custom_ignore = '\v(build|dist|__pycache__|node_modules|bower_components)[\/]'
+let g:ctrlp_custom_ignore = '\v(build|dist|__pycache__|node_modules|bower_components|virtualenv)[\/]'
 
 " ==============================================================================
 " Tagbar [ctags]
