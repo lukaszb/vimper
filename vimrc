@@ -226,6 +226,7 @@ let g:pymode_rope_autoimport_generate = 0
 let g:pymode_rope_autoimport_modules = ["os","shutil","datetime"]
 let g:pymode_rope_vim_completion = 1
 let g:pymode_rope_complete_on_dot = 0
+let g:pymode_virtualenv = 1
 
 let g:pymode_lint = 0
 

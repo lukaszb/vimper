@@ -5,6 +5,7 @@ plugins:
   closetag: git://github.com/docunext/closetag.vim.git
   ctrlp: git://github.com/kien/ctrlp.vim.git
   delimit-mate: git@github.com:Raimondi/delimitMate.git
+  filer: git@github.com:Shougo/vimfiler.vim.git
   fugitive: git://github.com/tpope/vim-fugitive.git
   gist: git@github.com:mattn/gist-vim.git
   go: git@github.com:fatih/vim-go.git
@@ -26,6 +27,7 @@ plugins:
   surround: https://github.com/tpope/vim-surround.git
   tagbar: git://github.com/majutsushi/tagbar.git
   unimpaired: git://github.com/tpope/vim-unimpaired.git
+  unite: git@github.com:Shougo/unite.vim.git
   webapi: git@github.com:mattn/webapi-vim.git
   zoomwin: git://github.com/itspriddle/ZoomWin.git
 
@@ -58,6 +60,7 @@ plugins:
   vim-json: git@github.com:elzr/vim-json.git
   salt: git@github.com:saltstack/salt-vim.git
   scala: git@github.com:derekwyatt/vim-scala.git
+  toml: git@github.com:cespare/vim-toml.git
 
   # snippets
   ulti-snips: git://github.com/SirVer/ultisnips.git
