@@ -2,11 +2,13 @@
 plugins:
   abolish: git://github.com/tpope/vim-abolish.git
   ack: git@github.com:mileszs/ack.vim.git
-  auto-pairs: git@github.com:jiangmiao/auto-pairs.git
   closetag: git://github.com/docunext/closetag.vim.git
   ctrlp: git://github.com/kien/ctrlp.vim.git
+  delimit-mate: git@github.com:Raimondi/delimitMate.git
+  filer: git@github.com:Shougo/vimfiler.vim.git
   fugitive: git://github.com/tpope/vim-fugitive.git
   gist: git@github.com:mattn/gist-vim.git
+  go: git@github.com:fatih/vim-go.git
   gundo: git://github.com/sjl/gundo.vim.git
   indent-object: git://github.com/michaeljsmith/vim-indent-object.git
   indent-guides: git://github.com/nathanaelkane/vim-indent-guides.git
@@ -26,6 +28,8 @@ plugins:
   surround: https://github.com/tpope/vim-surround.git
   tagbar: git://github.com/majutsushi/tagbar.git
   unimpaired: git://github.com/tpope/vim-unimpaired.git
+  unite: git@github.com:Shougo/unite.vim.git
+  vinegar: git://github.com/tpope/vim-vinegar.git
   webapi: git@github.com:mattn/webapi-vim.git
   zoomwin: git://github.com/itspriddle/ZoomWin.git
 
@@ -34,12 +38,14 @@ plugins:
   rainbow-parens: git://github.com/vim-scripts/Rainbow-Parentheses-Improved-and2.git
 
   # colors
+  onedark: git@github.com:geoffharcourt/one-dark.vim.git
   base16: git@github.com:chriskempson/base16-vim.git
   getafe: https://github.com/larssmit/vim-getafe.git
   github: https://github.com/telamon/vim-color-github.git
   ir_black: git://github.com/lukaszb/vim-irblack.git
   janus: git://github.com/TechnoGate/janus-colors.git
   molokai: https://github.com/vim-scripts/molokai.git
+  proton: git@github.com:vim-scripts/proton.git
   pyte: https://github.com/vim-scripts/pyte.git
   sampler-pack: https://github.com/vim-scripts/Colour-Sampler-Pack.git
   solarized: git://github.com/altercation/vim-colors-solarized.git
@@ -48,7 +54,8 @@ plugins:
   # syntax
   applescript: git@github.com:vim-scripts/applescript.vim.git
   coffee: git://github.com/kchmck/vim-coffee-script.git
-  css-color: git@github.com:skammer/vim-css-color.git
+  # css-color makes opening certain html files VERY slow
+  # css-color: git@github.com:skammer/vim-css-color.git
   css3: git@github.com:hail2u/vim-css3-syntax.git
   django: git://github.com/vim-scripts/django.vim.git
   go: git@github.com:fatih/vim-go.git
@@ -57,13 +64,16 @@ plugins:
   vim-json: git@github.com:elzr/vim-json.git
   salt: git@github.com:saltstack/salt-vim.git
   scala: git@github.com:derekwyatt/vim-scala.git
+  toml: git@github.com:cespare/vim-toml.git
 
   # snippets
   ulti-snips: git://github.com/SirVer/ultisnips.git
   keyboard_cat: git://github.com/natw/keyboard_cat.vim
 
   # javascript
-  javascript: https://github.com/pangloss/vim-javascript.git
+  indent-guides: git@github.com:nathanaelkane/vim-indent-guides.git
+  javascript: git@github.com:pangloss/vim-javascript.git
+  javascript-syntax: git@github.com:jelera/vim-javascript-syntax.git
   jshint2: git@github.com:Shutnik/jshint2.vim.git
   syntastic: git@github.com:scrooloose/syntastic.git
 

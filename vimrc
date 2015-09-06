@@ -47,6 +47,10 @@ set backspace=indent,eol,start
 " sorting
 vnoremap <Leader>s :sort<CR>
 
+" set encoding
+scriptencoding utf-8
+set encoding=utf-8
+
 " Whitespace stuff
 set wrap
 set tabstop=4
@@ -55,7 +59,7 @@ set softtabstop=4
 set expandtab
 set list
 set listchars=tab:>·,trail:·,extends:>,precedes:< ",eol:$
-"autocmd filetype html,xml set listchars-=tab:>.
+autocmd filetype go set listchars=tab:\|\ 
 set pastetoggle=<F2>
 nmap <silent> <leader>ww :%s/\s\+$//e<CR> :echo "Whitespace removed"<CR>
 nmap <silent> <leader>wt :set list!<CR>
@@ -68,7 +72,7 @@ set smartcase
 
 " Tab completion
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,*.rbc,.git,.hg,.svn,.bzr,*.pyc,*.egg,*.egg-info,.tox,.ropeproject
+set wildignore+=*.o,*.obj,*.rbc,.git,.hg,.svn,.bzr,*.pyc,*.egg,*.egg-info,.tox,.ropeproject,.venv,venv
 
 "Directories for swp files
 set backupdir=~/.vim/backup
@@ -125,9 +129,12 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
 endif
 
-" Error marker at ~80 character
-autocmd BufWinEnter *.py,*.txt,*.rst,*.c,*.cpp let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-set colorcolumn=81
+" CDC = Change to Directory of Current file
+command CDC cd %:p:h
+
+" Error marker at ~100 character
+autocmd BufWinEnter *.py,*.txt,*.rst,*.c,*.cpp let w:m2=matchadd('ErrorMsg', '\%>100v.\+', -1)
+set colorcolumn=101
 
 " Better indentation
 vnoremap < <gv
@@ -138,6 +145,9 @@ imap <D-]> <C-O>>>
 nmap <D-[> <<
 vmap <D-[> <<
 imap <D-[> <C-O><<
+
+" delimitMate split bracketes with newline
+imap <C-c> <CR><Esc>O
 
 
 
@@ -177,6 +187,12 @@ autocmd FileType sh map <buffer> <Leader>R :w<CR>:!/usr/bin/env sh % <CR>
 autocmd FileType javascript map <buffer> <Leader>rr :w<CR>:new<CR>:r!/usr/bin/env node # <CR>
 autocmd FileType javascript map <buffer> <Leader>R :w<CR>:!/usr/bin/env node % <CR>
 
+autocmd FileType go nmap <leader>R <CR>:GoRun %<CR>
+autocmd FileType go nmap <leader>rr <Plug>(go-run)
+"autocmd FileType go nmap <leader>b <Plug>(go-build)
+"autocmd FileType go nmap <leader>t <Plug>(go-test)
+"autocmd FileType go nmap <leader>c <Plug>(go-coverage)
+
 "
 " ==============================================================================
 " Load platform specific settings
@@ -213,7 +229,8 @@ let g:pymode_rope_goto_def_newwin = "tabnew"
 
 let g:pymode_lint = 0
 
-map <C-g> :RopeGotoDefinition<CR>
+let g:pymode_rope_goto_definition_bind = '<C-g>'
+let g:pymode_rope_goto_definition_cmd = 'tabnew'
 
 " ==============================================================================
 " SingleCompile
@@ -308,7 +325,7 @@ let g:ctrlp_prompt_mappings = {
 " Maximum height of filename window.
 let g:ctrlp_max_height = 50
 
-let g:ctrlp_custom_ignore = '\v(build|dist|__pycache__)[\/]'
+let g:ctrlp_custom_ignore = '\v(build|dist|__pycache__|node_modules|bower_components|virtualenv)[\/]'
 
 " ==============================================================================
 " Tagbar [ctags]
@@ -346,6 +363,31 @@ let g:syntastic_warning_symbol='W'
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': ['javascript'],
                            \ }
+
+" ==============================================================================
+" UltiSnips
+" ==============================================================================
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+
+" ==============================================================================
+" Tabs
+" ==============================================================================
+
+function! Tab2()
+    set tabstop=2
+    set shiftwidth=2
+    set softtabstop=2
+endfunction
+
+function! Tab4()
+    set tabstop=4
+    set shiftwidth=4
+    set softtabstop=4
+endfunction
+
+command! -nargs=0 Tab2 call Tab2()
+command! -nargs=0 Tab4 call Tab4()
+
 
 " Include user's local vim config
 if filereadable(expand("~/.vimrc.after"))
