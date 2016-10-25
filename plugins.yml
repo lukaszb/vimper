@@ -27,6 +27,7 @@ plugins:
   supertab: git://github.com/ervandew/supertab.git
   surround: https://github.com/tpope/vim-surround.git
   tagbar: git://github.com/majutsushi/tagbar.git
+  typescript: https://github.com/leafgarland/typescript-vim.git
   unimpaired: git://github.com/tpope/vim-unimpaired.git
   unite: git@github.com:Shougo/unite.vim.git
   vinegar: git://github.com/tpope/vim-vinegar.git
@@ -62,6 +63,7 @@ plugins:
   less: git@github.com:groenewege/vim-less.git
   #riv: git://github.com/Rykka/riv.vim.git # restructuredText
   vim-json: git@github.com:elzr/vim-json.git
+  vue: git@github.com:posva/vim-vue.git
   salt: git@github.com:saltstack/salt-vim.git
   scala: git@github.com:derekwyatt/vim-scala.git
   toml: git@github.com:cespare/vim-toml.git
