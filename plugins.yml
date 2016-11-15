@@ -41,6 +41,7 @@ plugins:
   # colors
   onedark: git@github.com:geoffharcourt/one-dark.vim.git
   base16: git@github.com:chriskempson/base16-vim.git
+  dracula: git@github.com:dracula/vim.git
   getafe: https://github.com/larssmit/vim-getafe.git
   github: https://github.com/telamon/vim-color-github.git
   ir_black: git://github.com/lukaszb/vim-irblack.git
