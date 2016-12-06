@@ -78,6 +78,6 @@ plugins:
   javascript: git@github.com:pangloss/vim-javascript.git
   javascript-syntax: git@github.com:jelera/vim-javascript-syntax.git
   jshint2: git@github.com:Shutnik/jshint2.vim.git
-  syntastic: git@github.com:scrooloose/syntastic.git
+  syntastic: git@github.com:scrooloose/syntastic.git 3.7.0
 
 # vim: tabstop=2 shiftwidth=2 softtabstop=2
