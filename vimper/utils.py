@@ -17,6 +17,11 @@ Update = namedtuple('Update', 'popen cloned')
 
 
 def update_repo(repo_path, uri, piped=False):
+    if len(uri.split()) == 2:
+        uri, tag = uri.split()
+    else:
+        tag = None
+
     if os.path.exists(repo_path):
         cmd = ['git', 'pull']
         cwd = repo_path
@@ -30,5 +35,11 @@ def update_repo(repo_path, uri, piped=False):
         kwargs.update({'stderr': subprocess.PIPE, 'stdout': subprocess.PIPE})
     popen = subprocess.Popen(cmd, cwd=cwd, shell=False, **kwargs)
     popen.wait()
-    return Update(popen, cloned)
 
+    # checkout to proper tag/sha
+    if tag:
+        cwd = ['git', 'checkout', tag]
+        _ = subprocess.Popen(cmd, cwd=cwd, shell=False, **kwargs)
+        _.wait()
+
+    return Update(popen, cloned)
