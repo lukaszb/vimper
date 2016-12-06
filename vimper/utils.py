@@ -10,7 +10,7 @@ __all__ = [
 ]
 
 
-abspath = lambda *p: os.path.abspath(os.path.join(*p))
+def abspath(*p): return os.path.abspath(os.path.join(*p))
 
 
 Update = namedtuple('Update', 'popen cloned')
