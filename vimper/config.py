@@ -9,7 +9,7 @@ VIMPER_CONFIG = os.path.expanduser('~/.vimperconfig')
 
 DEFAULT_CONFIG = '''
 [lair]
-url = git@github.com:lukaszb/vimper-lair.git
+url = https://github.com/lukaszb/vimper-lair.git
 path = ~/.vimper
 '''
 
