@@ -6,6 +6,7 @@ plugins:
   ctrlp: git@github.com:ctrlpvim/ctrlp.vim.git
   delimit-mate: git@github.com:Raimondi/delimitMate.git
   filer: git@github.com:Shougo/vimfiler.vim.git
+  flake8: git@github.com:nvie/vim-flake8.git
   fugitive: git://github.com/tpope/vim-fugitive.git
   gist: git@github.com:mattn/gist-vim.git
   go: git@github.com:fatih/vim-go.git
@@ -18,7 +19,6 @@ plugins:
   nerdtree-tabs: git@github.com:jistr/vim-nerdtree-tabs.git
   nerdtree: git://github.com/lukaszb/nerdtree.git
   nrrwrgn: git://github.com/chrisbra/NrrwRgn.git
-  pyflakes: git://github.com/vim-scripts/pyflakes.vim.git
   python-mode: git://github.com/klen/python-mode.git
   rename: git@github.com:vim-scripts/Rename2.git
   repeat: git://github.com/tpope/vim-repeat.git
